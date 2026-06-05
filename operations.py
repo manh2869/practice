@@ -26,18 +26,15 @@ class Matrix:
         return f"{self.data}"
 
     def __add__(self, other):
-        # for x, y in zip(self.data, other.data):
-        #     curr = []
-        #     for i, j in zip(x, y):
-        #         curr.append(i + j)
-        #     result.append(curr)
-        # return Matrix(result)
-        
-        result = [
-            for
-        ]
-        
-        
+        result = []
+        for x, y in zip(self.data, other.data):
+            curr = []
+            for i, j in zip(x, y):
+                curr.append(i + j)
+            result.append(curr)
+        return Matrix(result)
+        print(other.rows)
+        print(other.columns)
 
 
 # --------------------------------MATRIX
