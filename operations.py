@@ -12,6 +12,9 @@ class Vector:
     def __mul__(self, scalar):
         return Vector([x * scalar for x in self.components])  # [1,2,3] * 5  = [5,10,15]
 
+    def dot(self, other):
+        return sum(a * b for a, b in zip(self.components, other.components))
+
     # def subtrac(self, other_vector):
     #     return Vector([x - y for x, y in zip(self.components, other_vector.components)])
 
@@ -19,7 +22,7 @@ class Vector:
 class Matrix:
     def __init__(self, data):
         self.data = data
-        self.columns = len(data[0])
+        self.cols = len(data[0])
         self.rows = len(data)
 
     def __repr__(self):
@@ -36,6 +39,11 @@ class Matrix:
         print(other.rows)
         print(other.columns)
 
+    def dot(self, other):
+        return [
+            [x * y for x, y in zip(row, col)] for row, col in zip(self.data, other.data)
+        ]
+
 
 # --------------------------------MATRIX
 
@@ -43,15 +51,18 @@ v1 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 v2 = Matrix([[11, 12, 13], [14, 15, 16], [17, 18, 19]])
 
 
-v3 = v1 + v2
+# v3 = v1 + v2
+v3 = v1.dot(v2)
+
 print(v3)
 
 # -------------------------------- VECTOR
-# v1 = Vector([1, 2, 3])
-# v2 = Vector([7, 8, 9])
-# v3 = v1 * 5
+v1 = Vector([1, 2, 3])
+v2 = Vector([7, 8, 9])
+v3 = v1.dot(v2)
 # v3 += v1
 # print(v3)
+print(v3)
 
 # print(v3.components)
 
