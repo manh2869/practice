@@ -44,6 +44,11 @@ class Matrix:
             [x * y for x, y in zip(row, col)] for row, col in zip(self.data, other.data)
         ]
 
+    def __matmul__(self, other):
+        return [
+            [x + y for x, y in zip(row, col)] for row, col in zip(self.data, other.data)
+        ]
+
 
 # --------------------------------MATRIX
 
@@ -52,7 +57,7 @@ v2 = Matrix([[11, 12, 13], [14, 15, 16], [17, 18, 19]])
 
 
 # v3 = v1 + v2
-v3 = v1.dot(v2)
+v3 = v1 @ v2
 
 print(v3)
 
