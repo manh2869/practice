@@ -44,16 +44,24 @@ class Matrix:
             [x * y for x, y in zip(row, col)] for row, col in zip(self.data, other.data)
         ]
 
+    #                        (A @ B)  col A == row B
     def __matmul__(self, other):
-        return [
-            [x + y for x, y in zip(row, col)] for row, col in zip(self.data, other.data)
-        ]
+        result = []
+        for i in range(len(self.data)):
+            temp = []
+            for k in range(len(other.data[0])):
+                curr = 0
+                for j in range(len(other.data[0])):
+                    curr += self.data[i][j] * other.data[j][k]
+                temp.append(curr)
+            result.append(temp)
+        return result
 
 
 # --------------------------------MATRIX
 
 v1 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-v2 = Matrix([[11, 12, 13], [14, 15, 16], [17, 18, 19]])
+v2 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
 
 # v3 = v1 + v2
@@ -62,12 +70,12 @@ v3 = v1 @ v2
 print(v3)
 
 # -------------------------------- VECTOR
-v1 = Vector([1, 2, 3])
-v2 = Vector([7, 8, 9])
-v3 = v1.dot(v2)
+# v1 = Vector([1, 2, 3])
+# v2 = Vector([7, 8, 9])
+# v3 = v1.dot(v2)
 # v3 += v1
 # print(v3)
-print(v3)
+# print(v3)
 
 # print(v3.components)
 
